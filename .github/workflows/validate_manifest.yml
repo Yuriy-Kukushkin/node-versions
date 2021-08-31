@@ -32,4 +32,5 @@ jobs:
           $message = "The validation of node-versions manifest failed."
           .\helpers\get-new-tool-versions\send-slack-notification.ps1 -Url "${{ secrets.SLACK_CHANNEL_URL }}" `
                                                                       -ToolName "some tool" `
-                                                                      -Text "$message"
+                                                                      -Text "$message" `
+                                                                      -ImageUrl "https://golang.org/lib/godoc/images/footer-gopher.jpg"
