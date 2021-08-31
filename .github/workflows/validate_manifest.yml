@@ -27,6 +27,7 @@ jobs:
           submodules: true
 
       - name: Send Slack notification if validation fails
+        shell: pwsh
         run: |
           $message = "The validation of node-versions manifest failed."
           .\helpers\get-new-tool-versions\send-slack-notification.ps1 -Url "${{ secrets.SLACK_CHANNEL_URL }}" `
