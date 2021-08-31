@@ -1,0 +1,15 @@
+name: Validate manifests
+
+on:
+  workflow_dispatch
+
+jobs:
+  validation:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Validate node-versions manifest
+      shell: pwsh
+      run: .\helpers\packages-generation\manifest-validator.ps1 -ManifestUrl https://raw.githubusercontent.com/actions/node-versions/main/versions-manifest.json
