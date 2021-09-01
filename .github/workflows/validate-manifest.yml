@@ -2,23 +2,26 @@ name: Validate manifest
 
 on:
    schedule:
-    - cron:  '52 9 * * *'
+    - cron:  '15 10 * * *'
     
    pull_request:
     branches:
       - main
-
+env:
+  TOOL_NAME: "Node"
+defaults:
+  run:
+    shell: pwsh
+    
 jobs:
   validation:
     runs-on: ubuntu-latest
     
     steps:
     - uses: actions/checkout@v2
-      with:
-          submodules: true
+      
           
     - name: Validate node-versions manifest
-      shell: pwsh
       run: .\helpers\packages-generation\manifest-validator.ps1 -ManifestUrl https://raw.githubusercontent.com/actions/node-versions/main/versions-manifest.json
 
   check_build:
@@ -32,11 +35,10 @@ jobs:
           submodules: true
 
       - name: Send Slack notification if validation fails
-        shell: pwsh
         run: |
           $pipelineUrl = "$env:GITHUB_SERVER_URL/$env:GITHUB_REPOSITORY/actions/runs/$env:GITHUB_RUN_ID"
           $message = "The validation of node-versions manifest failed. \nLink to the pipeline: $pipelineUrl"
           .\helpers\get-new-tool-versions\send-slack-notification.ps1 -Url "${{ secrets.SLACK_CHANNEL_URL }}" `
-                                                                      -ToolName "no tool" `
+                                                                      -ToolName "${{ env.TOOL_NAME }}" `
                                                                       -Text "$message" `
                                                                       -ImageUrl "https://nodejs.org/static/images/logo-hexagon-card.png"
