@@ -2,7 +2,7 @@ name: Validate manifest
 
 on:
    schedule:
-    - cron:  '10 7 * * *'
+    - cron:  '00 9 * * *'
     
    pull_request:
     branches:
@@ -32,8 +32,9 @@ jobs:
       - name: Send Slack notification if validation fails
         shell: pwsh
         run: |
-          $message = "The validation of node-versions manifest failed."
+          $pipelineUrl = "$env:GITHUB_SERVER_URL/$env:GITHUB_REPOSITORY/actions/runs/$env:GITHUB_RUN_ID"
+          $message = "The validation of node-versions manifest failed. \nLink to the pipeline: $pipelineUrl"
           .\helpers\get-new-tool-versions\send-slack-notification.ps1 -Url "${{ secrets.SLACK_CHANNEL_URL }}" `
                                                                       -ToolName "no tool" `
                                                                       -Text "$message" `
-                                                                      -ImageUrl "https://golang.org/lib/godoc/images/footer-gopher.jpg"
+                                                                      -ImageUrl "https://nodejs.org/static/images/logo-hexagon-card.png"
