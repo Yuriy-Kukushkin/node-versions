@@ -2,7 +2,7 @@ name: Validate manifest
 
 on:
    schedule:
-    - cron:  '15 10 * * *'
+    - cron:  '40 10 * * *'
     
    pull_request:
     branches:
@@ -19,7 +19,8 @@ jobs:
     
     steps:
     - uses: actions/checkout@v2
-      
+      with:
+          submodules: true
           
     - name: Validate node-versions manifest
       run: .\helpers\packages-generation\manifest-validator.ps1 -ManifestUrl https://raw.githubusercontent.com/actions/node-versions/main/versions-manifest.json
