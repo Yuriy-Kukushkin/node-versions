@@ -2,7 +2,7 @@ name: Validate manifest
 
 on:
    schedule:
-    - cron:  '40 9 * * *'
+    - cron:  '52 9 * * *'
     
    pull_request:
     branches:
