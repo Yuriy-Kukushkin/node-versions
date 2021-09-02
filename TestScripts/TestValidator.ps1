@@ -14,6 +14,7 @@ function Publish-Error {
         [string] $ErrorDescription,
         [object] $Exception
     )
+    echo "::error ::$ErrorDescription"
     Write-Host "##vso[task.logissue type=error]ERROR: $ErrorDescription."
     Write-Host "##vso[task.logissue type=error]    $Exception"
     Write-Host "##vso[task.complete result=Failed;]"
