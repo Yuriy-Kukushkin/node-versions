@@ -3,7 +3,7 @@ param (
     [string] $AccessToken
 )
 
-$validationFailed = $false
+$Global:validationFailed = $false
 $authorizationHeaderValue = "Basic $AccessToken"
 $webRequestHeaders = @{}
 if ($AccessToken) {
@@ -63,7 +63,7 @@ $manifestJson | ForEach-Object {
     }
 }
 
-if($validationFailed)
+if($Global:validationFailed)
 {
     Write-Host "Validation failed"
     exit 1
