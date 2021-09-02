@@ -17,9 +17,7 @@ function Publish-Error {
     )
     Write-Host "Set validationFailed to true and add error to logs"
     echo "::error ::$ErrorDescription"
-    $Global:$validationFailed = $true
-    Write-Host "validationFailed is set to true"
-    Write-Host "validationFailed: $validationFailed"
+    $Global:validationFailed = $true
 }
 
 function Test-DownloadUrl {
