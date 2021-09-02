@@ -3,6 +3,7 @@ param (
     [string] $AccessToken
 )
 
+$validationFailed = $false
 $authorizationHeaderValue = "Basic $AccessToken"
 $webRequestHeaders = @{}
 if ($AccessToken) {
@@ -15,9 +16,10 @@ function Publish-Error {
         [object] $Exception
     )
     echo "::error ::$ErrorDescription"
-    Write-Host "##vso[task.logissue type=error]ERROR: $ErrorDescription."
-    Write-Host "##vso[task.logissue type=error]    $Exception"
-    Write-Host "##vso[task.complete result=Failed;]"
+    $validationFailed = $true
+    #Write-Host "##vso[task.logissue type=error]ERROR: $ErrorDescription."
+    #Write-Host "##vso[task.logissue type=error]    $Exception"
+    #Write-Host "##vso[task.complete result=Failed;]"
 }
 
 function Test-DownloadUrl {
@@ -61,4 +63,9 @@ $manifestJson | ForEach-Object {
             Publish-Error "Url '$($_.download_url)' is invalid"
         }
     }
+}
+
+if($validationFailed)
+{
+    exit 1
 }
