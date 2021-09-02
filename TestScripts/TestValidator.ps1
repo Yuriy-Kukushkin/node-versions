@@ -17,7 +17,7 @@ function Publish-Error {
     )
     Write-Host "Set validationFailed to true and add error to logs"
     echo "::error ::$ErrorDescription"
-    $validationFailed = $true
+    $Global:$validationFailed = $true
     Write-Host "validationFailed is set to true"
     Write-Host "validationFailed: $validationFailed"
 }
@@ -63,20 +63,10 @@ $manifestJson | ForEach-Object {
             Publish-Error "Url '$($_.download_url)' is invalid"
         }
     }
-    
-    Write-Host "Check if validation failed 1"
-    Write-Host "validationFailed 1: $validationFailed"
 }
 
-Write-Host "Check if validation failed 2"
-Write-Host "validationFailed 2: $validationFailed"
-
-if($validationFailed -eq $true)
+if($validationFailed)
 {
     Write-Host "Validation failed"
     exit 1
-}
-else
-{
-    Write-Host "Validation is sucessful"
 }
