@@ -15,11 +15,11 @@ function Publish-Error {
         [string] $ErrorDescription,
         [object] $Exception
     )
+    Write-Host "Set validationFailed to true and add error to logs"
     echo "::error ::$ErrorDescription"
     $validationFailed = $true
-    #Write-Host "##vso[task.logissue type=error]ERROR: $ErrorDescription."
-    #Write-Host "##vso[task.logissue type=error]    $Exception"
-    #Write-Host "##vso[task.complete result=Failed;]"
+    Write-Host "validationFailed is set to true"
+    Write-Host "validationFailed: $validationFailed"
 }
 
 function Test-DownloadUrl {
@@ -69,4 +69,8 @@ if($validationFailed)
 {
     Write-Host "Validation failed"
     exit 1
+}
+else
+{
+    Write-Host "Validation is sucessful"
 }
