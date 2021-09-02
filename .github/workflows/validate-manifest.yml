@@ -1,6 +1,7 @@
 name: Validate manifest
 
 on:
+   workflow_dispatch:
    schedule:
     - cron:  '0 8,20 * * *'
     
@@ -23,7 +24,7 @@ jobs:
           submodules: true
           
     - name: Validate node-versions manifest
-      run: .\helpers\packages-generation\manifest-validator.ps1 -ManifestUrl https://raw.githubusercontent.com/actions/node-versions/main/versions-manifest.json
+      run: .\helpers\packages-generation\manifest-validator.ps1 -ManifestUrl https://raw.githubusercontent.com/actions/node-versions/main/versions-manifes.json
 
   check_build:
     name: Check validation for failures 
