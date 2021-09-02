@@ -63,9 +63,15 @@ $manifestJson | ForEach-Object {
             Publish-Error "Url '$($_.download_url)' is invalid"
         }
     }
+    
+    Write-Host "Check if validation failed 1"
+    Write-Host "validationFailed 1: $validationFailed"
 }
 
-if($validationFailed)
+Write-Host "Check if validation failed 2"
+Write-Host "validationFailed 2: $validationFailed"
+
+if($validationFailed -eq $true)
 {
     Write-Host "Validation failed"
     exit 1
