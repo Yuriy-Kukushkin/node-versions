@@ -67,5 +67,6 @@ $manifestJson | ForEach-Object {
 
 if($validationFailed)
 {
+    Write-Host "Validation failed"
     exit 1
 }
