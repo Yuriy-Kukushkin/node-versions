@@ -16,7 +16,11 @@ function Publish-Error {
         [object] $Exception
     )
     
-    echo "::error ::$ErrorDescription `r`nException: $Exception"   
+    echo "::error ::$ErrorDescription" 
+    if(-not [string]::IsNullOrEmpty($Exception))
+    {
+        Write-Output "Exception: $Exception"
+    }
     $Global:validationFailed = $true
 }
 
