@@ -15,8 +15,8 @@ function Publish-Error {
         [string] $ErrorDescription,
         [object] $Exception
     )
-    Write-Host "Set validationFailed to true and add error to logs"
-    echo "::error ::$ErrorDescription"
+    
+    echo "::error ::$ErrorDescription \n Exception: $Exception"  
     $Global:validationFailed = $true
 }
 
