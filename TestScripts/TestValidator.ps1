@@ -16,7 +16,8 @@ function Publish-Error {
         [object] $Exception
     )
     
-    echo "::error ::$ErrorDescription \n Exception: $Exception"  
+    echo "::error ::$ErrorDescription"  
+    echo "::error ::Exception: $Exception" 
     $Global:validationFailed = $true
 }
 
