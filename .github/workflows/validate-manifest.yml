@@ -24,7 +24,7 @@ jobs:
           submodules: true
           
     - name: Validate node-versions manifest
-      run: .\TestScripts\TestValidator.ps1 -ManifestUrl https://raw.githubusercontent.com/Yuriy-Kukushkin/node-versions/main/versions-manifest.json
+      run: .\TestScripts\TestValidator.ps1 -ManifestUrl https://raw.githubusercontent.com/Yuriy-Kukushkin/node-versions/main/versions-manifest.json -AccessToken ${{ secrets.GITHUB_TOKEN }}
 
   check_build:
     name: Check validation for failures 
