@@ -24,7 +24,7 @@ param(
     [Parameter (Mandatory=$true)][string] $Platform,
     [string] $Architecture = "x64"
 )
-
+# test test test
 Import-Module (Join-Path $PSScriptRoot "../helpers" | Join-Path -ChildPath "nix-helpers.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "../helpers" | Join-Path -ChildPath "win-helpers.psm1") -DisableNameChecking
 
