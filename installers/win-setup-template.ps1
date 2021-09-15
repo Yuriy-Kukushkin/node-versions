@@ -1,5 +1,7 @@
 $ErrorActionPreference = "Stop"
 
+# the test
+
 [Version]$Version = "{{__VERSION__}}"
 [string]$Architecture = "{{__ARCHITECTURE__}}"
 
